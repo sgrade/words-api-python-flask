@@ -30,7 +30,7 @@ paths:
       tags:
       - word
       summary: Update an existing word
-      operationId: update_word
+      operationId: app_update_word
       requestBody:
         $ref: '#/components/requestBodies/Word'
       responses:
@@ -49,7 +49,7 @@ paths:
       tags:
       - word
       summary: Add a new word to the store
-      operationId: add_word
+      operationId: app_add_word
       requestBody:
         $ref: '#/components/requestBodies/Word'
       responses:
@@ -66,7 +66,7 @@ paths:
       - word
       summary: Find word by ID
       description: Returns a single word
-      operationId: get_word_by_id
+      operationId: app_get_word_by_id
       parameters:
       - name: wordId
         in: path
@@ -98,7 +98,7 @@ paths:
       tags:
       - word
       summary: Updates a word in the store with form data
-      operationId: update_word_with_form
+      operationId: app_update_word_with_form
       parameters:
       - name: wordId
         in: path
@@ -126,7 +126,7 @@ paths:
       tags:
       - word
       summary: Deletes a word
-      operationId: delete_word
+      operationId: app_delete_word
       parameters:
       - name: api_key
         in: header
@@ -159,7 +159,7 @@ paths:
       tags:
       - word
       summary: uploads an image
-      operationId: upload_file
+      operationId: app_upload_image
       parameters:
       - name: wordId
         in: path
@@ -194,7 +194,7 @@ paths:
       - words
       summary: Get words to learn
       description: Returns number of words to learn
-      operationId: get_words_to_learn
+      operationId: app_get_words_to_learn
       parameters:
       - name: limit
         in: query
@@ -254,7 +254,7 @@ paths:
       - words
       summary: Finds Words by status
       description: Multiple status values can be provided with comma separated strings
-      operationId: find_words_by_status
+      operationId: app_find_words_by_status
       parameters:
       - name: status
         in: query
@@ -299,7 +299,7 @@ paths:
       - words
       summary: Find Words by name
       description: Returns all words, which have the term in their name
-      operationId: find_words_by_name
+      operationId: app_find_words_by_name
       parameters:
       - name: term
         in: path
@@ -337,7 +337,7 @@ paths:
       - store
       summary: Returns word inventories by status
       description: Returns a map of status codes to quantities
-      operationId: get_inventory
+      operationId: app_get_inventory
       responses:
         "200":
           description: successful operation
@@ -357,7 +357,7 @@ paths:
       tags:
       - store
       summary: Place an order for a word
-      operationId: place_order
+      operationId: app_place_order
       requestBody:
         description: order placed for purchasing the word
         content:
@@ -385,7 +385,7 @@ paths:
       summary: Find purchase order by ID
       description: For valid response try integer IDs with value >= 1 and <= 10.\
         \ Other values will generated exceptions
-      operationId: get_order_by_id
+      operationId: app_get_order_by_id
       parameters:
       - name: orderId
         in: path
@@ -419,7 +419,7 @@ paths:
       summary: Delete purchase order by ID
       description: For valid response try integer IDs with positive integer value.\
         \ Negative or non-integer values will generate API errors
-      operationId: delete_order
+      operationId: app_delete_order
       parameters:
       - name: orderId
         in: path
@@ -443,7 +443,7 @@ paths:
       - user
       summary: Create user
       description: This can only be done by the logged in user.
-      operationId: create_user
+      operationId: app_create_user
       requestBody:
         description: Created user object
         content:
@@ -460,7 +460,7 @@ paths:
       tags:
       - user
       summary: Creates list of users with given input array
-      operationId: create_users_with_array_input
+      operationId: app_create_users_with_array_input
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
@@ -472,7 +472,7 @@ paths:
       tags:
       - user
       summary: Creates list of users with given input array
-      operationId: create_users_with_list_input
+      operationId: app_create_users_with_list_input
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
@@ -484,7 +484,7 @@ paths:
       tags:
       - user
       summary: Logs user into the system
-      operationId: login_user
+      operationId: app_login_user
       parameters:
       - name: username
         in: query
@@ -536,7 +536,7 @@ paths:
       tags:
       - user
       summary: Logs out current logged in user session
-      operationId: logout_user
+      operationId: app_logout_user
       responses:
         default:
           description: successful operation
@@ -546,7 +546,7 @@ paths:
       tags:
       - user
       summary: Get user by user name
-      operationId: get_user_by_name
+      operationId: app_get_user_by_name
       parameters:
       - name: username
         in: path
@@ -576,7 +576,7 @@ paths:
       - user
       summary: Updated user
       description: This can only be done by the logged in user.
-      operationId: update_user
+      operationId: app_update_user
       parameters:
       - name: username
         in: path
@@ -604,7 +604,7 @@ paths:
       - user
       summary: Delete user
       description: This can only be done by the logged in user.
-      operationId: delete_user
+      operationId: app_delete_user
       parameters:
       - name: username
         in: path
@@ -626,7 +626,7 @@ paths:
       - user
       summary: Update word status for the user
       description: This can only be done by the logged in user.
-      operationId: mark_word_learned
+      operationId: app_mark_word_learned
       parameters:
       - name: username
         in: path

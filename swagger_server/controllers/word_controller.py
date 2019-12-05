@@ -6,7 +6,7 @@ from swagger_server.models.word import Word  # noqa: E501
 from swagger_server import util
 
 
-def add_word(body):  # noqa: E501
+def app_add_word(body):  # noqa: E501
     """Add a new word to the store
 
      # noqa: E501
@@ -21,7 +21,7 @@ def add_word(body):  # noqa: E501
     return 'do some magic!'
 
 
-def delete_word(word_id, api_key=None):  # noqa: E501
+def app_delete_word(word_id, api_key=None):  # noqa: E501
     """Deletes a word
 
      # noqa: E501
@@ -36,7 +36,7 @@ def delete_word(word_id, api_key=None):  # noqa: E501
     return 'do some magic!'
 
 
-def get_word_by_id(word_id):  # noqa: E501
+def app_get_word_by_id(word_id):  # noqa: E501
     """Find word by ID
 
     Returns a single word # noqa: E501
@@ -49,7 +49,7 @@ def get_word_by_id(word_id):  # noqa: E501
     return 'do some magic!'
 
 
-def update_word(body):  # noqa: E501
+def app_update_word(body):  # noqa: E501
     """Update an existing word
 
      # noqa: E501
@@ -64,7 +64,7 @@ def update_word(body):  # noqa: E501
     return 'do some magic!'
 
 
-def update_word_with_form(word_id, name=None, status=None):  # noqa: E501
+def app_update_word_with_form(word_id, name=None, status=None):  # noqa: E501
     """Updates a word in the store with form data
 
      # noqa: E501
@@ -81,7 +81,7 @@ def update_word_with_form(word_id, name=None, status=None):  # noqa: E501
     return 'do some magic!'
 
 
-def upload_file(word_id, body=None):  # noqa: E501
+def app_upload_image(word_id, body=None):  # noqa: E501
     """uploads an image
 
      # noqa: E501
