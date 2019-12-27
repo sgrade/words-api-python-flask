@@ -5,7 +5,7 @@ from swagger_server.models.user import User  # noqa: E501
 from swagger_server import util
 
 
-def app_create_user(body):  # noqa: E501
+def create_user(body):  # noqa: E501
     """Create user
 
     This can only be done by the logged in user. # noqa: E501
@@ -20,7 +20,7 @@ def app_create_user(body):  # noqa: E501
     return 'do some magic!'
 
 
-def app_create_users_with_array_input(body):  # noqa: E501
+def create_users_with_array_input(body):  # noqa: E501
     """Creates list of users with given input array
 
      # noqa: E501
@@ -35,7 +35,7 @@ def app_create_users_with_array_input(body):  # noqa: E501
     return 'do some magic!'
 
 
-def app_create_users_with_list_input(body):  # noqa: E501
+def create_users_with_list_input(body):  # noqa: E501
     """Creates list of users with given input array
 
      # noqa: E501
@@ -50,7 +50,7 @@ def app_create_users_with_list_input(body):  # noqa: E501
     return 'do some magic!'
 
 
-def app_delete_user(username):  # noqa: E501
+def delete_user(username):  # noqa: E501
     """Delete user
 
     This can only be done by the logged in user. # noqa: E501
@@ -63,7 +63,7 @@ def app_delete_user(username):  # noqa: E501
     return 'do some magic!'
 
 
-def app_get_user_by_name(username):  # noqa: E501
+def get_user_by_name(username):  # noqa: E501
     """Get user by user name
 
      # noqa: E501
@@ -76,7 +76,7 @@ def app_get_user_by_name(username):  # noqa: E501
     return 'do some magic!'
 
 
-def app_login_user(username, password):  # noqa: E501
+def login_user(username, password):  # noqa: E501
     """Logs user into the system
 
      # noqa: E501
@@ -91,7 +91,7 @@ def app_login_user(username, password):  # noqa: E501
     return 'do some magic!'
 
 
-def app_logout_user():  # noqa: E501
+def logout_user():  # noqa: E501
     """Logs out current logged in user session
 
      # noqa: E501
@@ -102,7 +102,7 @@ def app_logout_user():  # noqa: E501
     return 'do some magic!'
 
 
-def app_mark_word_learned(username, word_id):  # noqa: E501
+def mark_word_learned(username, word_id):  # noqa: E501
     """Update word status for the user
 
     This can only be done by the logged in user. # noqa: E501
@@ -117,7 +117,7 @@ def app_mark_word_learned(username, word_id):  # noqa: E501
     return 'do some magic!'
 
 
-def app_update_user(body, username):  # noqa: E501
+def update_user(body, username):  # noqa: E501
     """Updated user
 
     This can only be done by the logged in user. # noqa: E501

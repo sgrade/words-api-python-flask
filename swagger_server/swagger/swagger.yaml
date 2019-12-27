@@ -1,15 +1,17 @@
 openapi: 3.0.0
 info:
   title: Words
-  description: Words backend API
+  description: Words API
   termsOfService: http://www.romank.net/content/about
   contact:
     email: sgrade@users.noreply.github.com
   license:
     name: MIT license
-    url: https://github.com/sgrade/words-api-spec/blob/master/LICENSE
+    url: https://github.com/sgrade/words-api/blob/master/LICENSE
   version: 1.0.0
 servers:
+- url: /
+  description: basePath
 - url: https://virtserver.swaggerhub.com/sgrade/words/1.0.0
   description: SwaggerHub API Auto Mocking
 tags:
@@ -30,7 +32,7 @@ paths:
       tags:
       - word
       summary: Update an existing word
-      operationId: app_update_word
+      operationId: update_word
       requestBody:
         $ref: '#/components/requestBodies/Word'
       responses:
@@ -40,16 +42,12 @@ paths:
           description: Word not found
         "405":
           description: Validation exception
-      security:
-      - wordstore_auth:
-        - write:words
-        - read:words
       x-openapi-router-controller: swagger_server.controllers.word_controller
     post:
       tags:
       - word
       summary: Add a new word to the store
-      operationId: app_add_word
+      operationId: add_word
       requestBody:
         $ref: '#/components/requestBodies/Word'
       responses:
@@ -66,7 +64,7 @@ paths:
       - word
       summary: Find word by ID
       description: Returns a single word
-      operationId: app_get_word_by_id
+      operationId: get_word_by_id
       parameters:
       - name: wordId
         in: path
@@ -91,14 +89,12 @@ paths:
           description: Invalid ID supplied
         "404":
           description: Word not found
-      security:
-      - api_key: []
       x-openapi-router-controller: swagger_server.controllers.word_controller
     post:
       tags:
       - word
       summary: Updates a word in the store with form data
-      operationId: app_update_word_with_form
+      operationId: update_word_with_form
       parameters:
       - name: wordId
         in: path
@@ -117,16 +113,12 @@ paths:
       responses:
         "405":
           description: Invalid input
-      security:
-      - wordstore_auth:
-        - write:words
-        - read:words
       x-openapi-router-controller: swagger_server.controllers.word_controller
     delete:
       tags:
       - word
       summary: Deletes a word
-      operationId: app_delete_word
+      operationId: delete_word
       parameters:
       - name: api_key
         in: header
@@ -149,17 +141,13 @@ paths:
           description: Invalid ID supplied
         "404":
           description: Word not found
-      security:
-      - wordstore_auth:
-        - write:words
-        - read:words
       x-openapi-router-controller: swagger_server.controllers.word_controller
   /word/{wordId}/uploadImage:
     post:
       tags:
       - word
       summary: uploads an image
-      operationId: app_upload_image
+      operationId: upload_file
       parameters:
       - name: wordId
         in: path
@@ -183,10 +171,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
-      security:
-      - wordstore_auth:
-        - write:words
-        - read:words
       x-openapi-router-controller: swagger_server.controllers.word_controller
   /words:
     get:
@@ -194,7 +178,7 @@ paths:
       - words
       summary: Get words to learn
       description: Returns number of words to learn
-      operationId: app_get_words_to_learn
+      operationId: get_words_to_learn
       parameters:
       - name: limit
         in: query
@@ -245,8 +229,6 @@ paths:
           description: Invalid number of words supplied
         "404":
           description: Words not found
-      security:
-      - api_key: []
       x-openapi-router-controller: swagger_server.controllers.words_controller
   /words/findByStatus:
     get:
@@ -254,7 +236,7 @@ paths:
       - words
       summary: Finds Words by status
       description: Multiple status values can be provided with comma separated strings
-      operationId: app_find_words_by_status
+      operationId: find_words_by_status
       parameters:
       - name: status
         in: query
@@ -288,10 +270,6 @@ paths:
                   $ref: '#/components/schemas/Words'
         "400":
           description: Invalid status value
-      security:
-      - wordstore_auth:
-        - write:words
-        - read:words
       x-openapi-router-controller: swagger_server.controllers.words_controller
   /words/findByName:
     get:
@@ -299,7 +277,7 @@ paths:
       - words
       summary: Find Words by name
       description: Returns all words, which have the term in their name
-      operationId: app_find_words_by_name
+      operationId: find_words_by_name
       parameters:
       - name: term
         in: path
@@ -326,10 +304,6 @@ paths:
                   $ref: '#/components/schemas/Words'
         "400":
           description: Invalid status value
-      security:
-      - wordstore_auth:
-        - write:words
-        - read:words
       x-openapi-router-controller: swagger_server.controllers.words_controller
   /store/inventory:
     get:
@@ -337,7 +311,7 @@ paths:
       - store
       summary: Returns word inventories by status
       description: Returns a map of status codes to quantities
-      operationId: app_get_inventory
+      operationId: get_inventory
       responses:
         "200":
           description: successful operation
@@ -349,15 +323,13 @@ paths:
                   type: integer
                   format: int32
                 x-content-type: application/json
-      security:
-      - api_key: []
       x-openapi-router-controller: swagger_server.controllers.store_controller
   /store/order:
     post:
       tags:
       - store
       summary: Place an order for a word
-      operationId: app_place_order
+      operationId: place_order
       requestBody:
         description: order placed for purchasing the word
         content:
@@ -385,7 +357,7 @@ paths:
       summary: Find purchase order by ID
       description: For valid response try integer IDs with value >= 1 and <= 10.\
         \ Other values will generated exceptions
-      operationId: app_get_order_by_id
+      operationId: get_order_by_id
       parameters:
       - name: orderId
         in: path
@@ -419,7 +391,7 @@ paths:
       summary: Delete purchase order by ID
       description: For valid response try integer IDs with positive integer value.\
         \ Negative or non-integer values will generate API errors
-      operationId: app_delete_order
+      operationId: delete_order
       parameters:
       - name: orderId
         in: path
@@ -443,7 +415,7 @@ paths:
       - user
       summary: Create user
       description: This can only be done by the logged in user.
-      operationId: app_create_user
+      operationId: create_user
       requestBody:
         description: Created user object
         content:
@@ -460,7 +432,7 @@ paths:
       tags:
       - user
       summary: Creates list of users with given input array
-      operationId: app_create_users_with_array_input
+      operationId: create_users_with_array_input
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
@@ -472,7 +444,7 @@ paths:
       tags:
       - user
       summary: Creates list of users with given input array
-      operationId: app_create_users_with_list_input
+      operationId: create_users_with_list_input
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
@@ -484,7 +456,7 @@ paths:
       tags:
       - user
       summary: Logs user into the system
-      operationId: app_login_user
+      operationId: login_user
       parameters:
       - name: username
         in: query
@@ -536,7 +508,7 @@ paths:
       tags:
       - user
       summary: Logs out current logged in user session
-      operationId: app_logout_user
+      operationId: logout_user
       responses:
         default:
           description: successful operation
@@ -546,7 +518,7 @@ paths:
       tags:
       - user
       summary: Get user by user name
-      operationId: app_get_user_by_name
+      operationId: get_user_by_name
       parameters:
       - name: username
         in: path
@@ -576,7 +548,7 @@ paths:
       - user
       summary: Updated user
       description: This can only be done by the logged in user.
-      operationId: app_update_user
+      operationId: update_user
       parameters:
       - name: username
         in: path
@@ -604,7 +576,7 @@ paths:
       - user
       summary: Delete user
       description: This can only be done by the logged in user.
-      operationId: app_delete_user
+      operationId: delete_user
       parameters:
       - name: username
         in: path
@@ -626,7 +598,7 @@ paths:
       - user
       summary: Update word status for the user
       description: This can only be done by the logged in user.
-      operationId: app_mark_word_learned
+      operationId: mark_word_learned
       parameters:
       - name: username
         in: path
@@ -797,6 +769,10 @@ components:
               $ref: '#/components/schemas/User'
       required: true
   securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      x-basicInfoFunc: swagger_server.controllers.authorization_controller.check_BasicAuth
     wordstore_auth:
       type: oauth2
       flows:

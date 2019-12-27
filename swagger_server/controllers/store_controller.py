@@ -5,7 +5,7 @@ from swagger_server.models.order import Order  # noqa: E501
 from swagger_server import util
 
 
-def app_delete_order(order_id):  # noqa: E501
+def delete_order(order_id):  # noqa: E501
     """Delete purchase order by ID
 
     For valid response try integer IDs with positive integer value.\\ \\ Negative or non-integer values will generate API errors # noqa: E501
@@ -18,7 +18,7 @@ def app_delete_order(order_id):  # noqa: E501
     return 'do some magic!'
 
 
-def app_get_inventory():  # noqa: E501
+def get_inventory():  # noqa: E501
     """Returns word inventories by status
 
     Returns a map of status codes to quantities # noqa: E501
@@ -29,7 +29,7 @@ def app_get_inventory():  # noqa: E501
     return 'do some magic!'
 
 
-def app_get_order_by_id(order_id):  # noqa: E501
+def get_order_by_id(order_id):  # noqa: E501
     """Find purchase order by ID
 
     For valid response try integer IDs with value &gt;&#x3D; 1 and &lt;&#x3D; 10.\\ \\ Other values will generated exceptions # noqa: E501
@@ -42,7 +42,7 @@ def app_get_order_by_id(order_id):  # noqa: E501
     return 'do some magic!'
 
 
-def app_place_order(body):  # noqa: E501
+def place_order(body):  # noqa: E501
     """Place an order for a word
 
      # noqa: E501
