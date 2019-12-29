@@ -117,7 +117,7 @@ paths:
     delete:
       tags:
       - word
-      summary: Deletes a word
+      summary: Delete word
       operationId: delete_word
       parameters:
       - name: api_key
@@ -172,64 +172,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
       x-openapi-router-controller: words_backend.controllers.word_controller
-  /words:
-    get:
-      tags:
-      - words
-      summary: Get words to learn
-      description: Returns number of words to learn
-      operationId: get_words_to_learn
-      parameters:
-      - name: limit
-        in: query
-        description: number of words to return
-        required: false
-        style: form
-        explode: true
-        schema:
-          minimum: 3
-          type: integer
-          default: 3
-      - name: status
-        in: query
-        description: status of words to return
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: string
-            enum:
-            - notStarted
-            - inProgress
-            - learned
-        examples:
-          oneStatus:
-            summary: Example of a single status
-            value:
-            - inProgress
-          multipleStatuses:
-            summary: Example of multiple statuses
-            value:
-            - notStarted
-            - inProgress
-            - learned
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Words'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Words'
-        "400":
-          description: Invalid number of words supplied
-        "404":
-          description: Words not found
-      x-openapi-router-controller: words_backend.controllers.words_controller
   /words/findByStatus:
     get:
       tags:
@@ -546,7 +488,7 @@ paths:
     put:
       tags:
       - user
-      summary: Updated user
+      summary: Update user
       description: This can only be done by the logged in user.
       operationId: update_user
       parameters:
@@ -592,6 +534,72 @@ paths:
         "404":
           description: User not found
       x-openapi-router-controller: words_backend.controllers.user_controller
+  /user/{username}/words_to_learn:
+    get:
+      tags:
+      - user
+      summary: Get words to learn
+      description: Returns number of words to learn
+      operationId: get_words_to_learn
+      parameters:
+      - name: username
+        in: path
+        description: name that need to be updated
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: number of words to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 3
+          type: integer
+          default: 3
+      - name: status
+        in: query
+        description: status of words to return
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - notStarted
+            - inProgress
+            - learned
+        examples:
+          oneStatus:
+            summary: Example of a single status
+            value:
+            - inProgress
+          multipleStatuses:
+            summary: Example of multiple statuses
+            value:
+            - notStarted
+            - inProgress
+            - learned
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Words'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Words'
+        "400":
+          description: Invalid number of words supplied
+        "404":
+          description: Words not found
+      x-openapi-router-controller: words_backend.controllers.words_controller
   /user/{username}/{wordId}:
     put:
       tags:

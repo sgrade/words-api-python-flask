@@ -22,7 +22,7 @@ def add_word(body):  # noqa: E501
 
 
 def delete_word(word_id, api_key=None):  # noqa: E501
-    """Deletes a word
+    """Delete word
 
      # noqa: E501
 

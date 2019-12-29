@@ -2,6 +2,7 @@ import connexion
 import six
 
 from swagger_server.models.user import User  # noqa: E501
+from swagger_server.models.words import Words  # noqa: E501
 from swagger_server import util
 
 
@@ -76,6 +77,23 @@ def get_user_by_name(username):  # noqa: E501
     return 'do some magic!'
 
 
+def get_words_to_learn(username, limit=None, status=None):  # noqa: E501
+    """Get words to learn
+
+    Returns number of words to learn # noqa: E501
+
+    :param username: name that need to be updated
+    :type username: str
+    :param limit: number of words to return
+    :type limit: int
+    :param status: status of words to return
+    :type status: List[str]
+
+    :rtype: Words
+    """
+    return 'do some magic!'
+
+
 def login_user(username, password):  # noqa: E501
     """Logs user into the system
 
@@ -118,7 +136,7 @@ def mark_word_learned(username, word_id):  # noqa: E501
 
 
 def update_user(body, username):  # noqa: E501
-    """Updated user
+    """Update user
 
     This can only be done by the logged in user. # noqa: E501
 
