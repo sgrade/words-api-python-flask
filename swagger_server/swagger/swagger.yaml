@@ -680,8 +680,8 @@ components:
         name: User
     Word:
       required:
+      - imageurl
       - name
-      - photoUrls
       type: object
       properties:
         id:
@@ -689,19 +689,13 @@ components:
           format: int64
         name:
           type: string
-          example: doggie
-        photoUrls:
-          type: array
-          xml:
-            name: photoUrl
-            wrapped: true
-          items:
-            type: string
+          example: cow
+        imageurl:
+          type: string
+          example: cow.jpg
       example:
-        photoUrls:
-        - photoUrls
-        - photoUrls
-        name: doggie
+        imageurl: cow.jpg
+        name: cow
         id: 0
       xml:
         name: Word
