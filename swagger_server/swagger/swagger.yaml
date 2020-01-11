@@ -31,7 +31,10 @@ paths:
       summary: Update an existing word
       operationId: update_word
       requestBody:
-        $ref: '#/components/requestBodies/Word'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Word'
       responses:
         "400":
           description: Invalid ID supplied
@@ -46,7 +49,10 @@ paths:
       summary: Create a new word in the database
       operationId: create_word
       requestBody:
-        $ref: '#/components/requestBodies/Word'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Word'
       responses:
         "405":
           description: Invalid input
@@ -268,7 +274,7 @@ paths:
         "400":
           description: Invalid status value
       x-openapi-router-controller: words_backend.controllers.words_controller
-  /words/findByName:
+  /words/findByName/{term}:
     get:
       tags:
       - words
@@ -292,13 +298,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Words'
+                  $ref: '#/components/schemas/Word'
                 x-content-type: application/json
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Words'
+                  $ref: '#/components/schemas/Word'
         "400":
           description: Invalid status value
       x-openapi-router-controller: words_backend.controllers.words_controller
